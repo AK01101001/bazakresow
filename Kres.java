@@ -9,36 +9,40 @@ import androidx.room.PrimaryKey;
 
 
 public class Kres {
-    private enum Kategoria{
+    @ColumnInfo(name = "kategoria")
+    private Kategoria kategoria;
+    public enum Kategoria{
         naturalne,
         sztuczne
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     private int id;
-
 
     @ColumnInfo(name = "nazwa")
     private String nazwa;
 
     @ColumnInfo(name = "opis")
     private String opis;
+
     @ColumnInfo(name = "rok")
     private int rok;
-
-
-
-
 
     @Ignore
     public Kres() {
     }
 
-    public Kres(String nazwa, String opis, int rok) {
+    public Kres(String nazwa, String opis, int rok, Kategoria kategoria) {
         id = 0;
         this.nazwa = nazwa;
         this.opis = opis;
         this.rok = rok;
+        this.kategoria = kategoria;
 
     }
 
@@ -68,5 +72,24 @@ public class Kres {
 
     public int getId() {
         return id;
+    }
+
+    public Kategoria getKategoria() {
+        return kategoria;
+    }
+
+    public void setKategoria(Kategoria kategoria) {
+        this.kategoria = kategoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Kres{" +
+                "kategoria=" + kategoria +
+                ", id=" + id +
+                ", nazwa='" + nazwa + '\'' +
+                ", opis='" + opis + '\'' +
+                ", rok=" + rok +
+                '}';
     }
 }
